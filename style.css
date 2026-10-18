@@ -1223,3 +1223,73 @@ main>section[id]{scroll-margin-top:132px}
   .hero-violet-shader{animation:none;transform:none;opacity:.42}
 }
 
+/* Le motif du logo laisse place à un seul halo violet, plus respirant. */
+.hero-violet-shader,
+.hero:before{
+  display:none!important;
+}
+.hero:after{
+  display:block!important;
+  content:'';
+  position:absolute;
+  z-index:0;
+  top:14%;
+  right:7vw;
+  width:clamp(150px,18vw,250px);
+  height:clamp(150px,18vw,250px);
+  border:0!important;
+  border-radius:50%;
+  background:radial-gradient(circle at 42% 38%,rgba(188,75,255,.4),rgba(144,19,254,.2) 40%,rgba(144,19,254,0) 72%)!important;
+  box-shadow:0 0 70px rgba(144,19,254,.16);
+  opacity:.82!important;
+  filter:blur(22px)!important;
+  transform:translate3d(0,0,0)!important;
+  animation:heroVioletDot 16s ease-in-out infinite alternate!important;
+  pointer-events:none;
+}
+@keyframes heroVioletDot{
+  0%{transform:translate3d(0,0,0) scale(.9)!important}
+  45%{transform:translate3d(-34px,92px,0) scale(1.08)!important}
+  100%{transform:translate3d(16px,172px,0) scale(.96)!important}
+}
+@media(max-width:800px){
+  .hero:after{
+    top:13%;
+    right:-46px;
+    width:145px;
+    height:145px;
+    opacity:.55!important;
+    filter:blur(19px)!important;
+  }
+  .nav,
+  .nav.scrolled{
+    position:fixed!important;
+    top:10px!important;
+    left:14px!important;
+    right:14px!important;
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    transform:none!important;
+  }
+  .nav .brand{min-width:0;flex:1 1 auto;overflow:hidden}
+  .nav .brand-logo{display:block;width:118px!important;max-width:100%!important;height:auto!important}
+  .nav .menu{display:grid!important;flex:0 0 48px;width:48px;height:48px;margin-left:auto;margin-right:0}
+  .nav nav.open{
+    position:fixed!important;
+    top:76px!important;
+    left:14px!important;
+    right:14px!important;
+    width:auto!important;
+    max-width:none!important;
+    transform:none!important;
+  }
+}
+@media(max-width:480px){
+  .hero:after{right:-58px;width:128px;height:128px}
+  .nav .brand-logo{width:110px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero:after{animation:none!important;transform:none!important}
+}
+
