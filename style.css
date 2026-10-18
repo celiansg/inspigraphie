@@ -1293,3 +1293,85 @@ main>section[id]{scroll-margin-top:132px}
   .hero:after{animation:none!important;transform:none!important}
 }
 
+/* Trois halos indépendants pour une présence violette plus organique. */
+.hero:after{display:none!important}
+.hero-violet-dots{
+  position:absolute;
+  z-index:0;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.hero-violet-dot{
+  position:absolute;
+  display:block;
+  border-radius:50%;
+  background:radial-gradient(circle at 42% 38%,rgba(188,75,255,.4),rgba(144,19,254,.2) 42%,rgba(144,19,254,0) 74%);
+  filter:blur(21px);
+  opacity:.72;
+  will-change:transform;
+}
+.hero-violet-dot--one{
+  top:12%;
+  right:9%;
+  width:clamp(130px,16vw,220px);
+  aspect-ratio:1;
+  animation:heroDotOne 17s ease-in-out -3s infinite alternate;
+}
+.hero-violet-dot--two{
+  left:8%;
+  bottom:12%;
+  width:clamp(84px,10vw,140px);
+  aspect-ratio:1;
+  opacity:.5;
+  animation:heroDotTwo 21s ease-in-out -8s infinite alternate;
+}
+.hero-violet-dot--three{
+  top:48%;
+  right:38%;
+  width:clamp(58px,7vw,96px);
+  aspect-ratio:1;
+  opacity:.42;
+  filter:blur(17px);
+  animation:heroDotThree 14s ease-in-out -5s infinite alternate;
+}
+@keyframes heroDotOne{
+  0%{transform:translate3d(0,0,0) scale(.88)}
+  48%{transform:translate3d(-42px,86px,0) scale(1.08)}
+  100%{transform:translate3d(18px,172px,0) scale(.96)}
+}
+@keyframes heroDotTwo{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(70px,-38px,0) scale(1.14)}
+  100%{transform:translate3d(150px,24px,0) scale(.86)}
+}
+@keyframes heroDotThree{
+  0%{transform:translate3d(0,0,0) scale(.84)}
+  50%{transform:translate3d(-70px,-45px,0) scale(1.18)}
+  100%{transform:translate3d(54px,86px,0) scale(.92)}
+}
+@media(max-width:800px){
+  .hero-violet-dot--one{top:12%;right:-42px;width:128px;opacity:.5}
+  .hero-violet-dot--two{left:-30px;bottom:11%;width:92px;opacity:.38}
+  .hero-violet-dot--three{top:45%;right:16%;width:66px;opacity:.34}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-violet-dot{animation:none!important}
+}
+
+/* Réglage de perception : les halos restent doux, mais leur trajet se lit
+   clairement sur un écran de téléphone. */
+.hero-violet-dot{
+  filter:blur(16px);
+  opacity:.82;
+  background:radial-gradient(circle at 42% 38%,rgba(188,75,255,.56),rgba(144,19,254,.28) 42%,rgba(144,19,254,0) 74%);
+}
+.hero-violet-dot--one{animation-duration:12s}
+.hero-violet-dot--two{opacity:.62;animation-duration:15s}
+.hero-violet-dot--three{opacity:.54;filter:blur(13px);animation-duration:10s}
+@media(max-width:800px){
+  .hero-violet-dot--one{opacity:.62}
+  .hero-violet-dot--two{opacity:.5}
+  .hero-violet-dot--three{top:25%;right:12%;opacity:.46}
+}
+
