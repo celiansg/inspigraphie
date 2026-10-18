@@ -761,3 +761,80 @@ if (methodStepper) {
   updateLabels(0, 0);
   requestAnimationFrame(draw);
 })();
+
+/* Les halos violets se déplacent librement dans tout le hero.
+   Chaque point reçoit une nouvelle destination et une durée différentes,
+   pour éviter l'effet de va-et-vient synchronisé des keyframes classiques. */
+(() => {
+  const hero = document.querySelector('.hero');
+  const dots = [...document.querySelectorAll('.hero-violet-dot')];
+  if (!hero || !dots.length) return;
+
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const timers = new Map();
+  let resizeFrame = 0;
+
+  const randomBetween = (min, max) => min + Math.random() * (max - min);
+  const getBounds = dot => {
+    const heroWidth = hero.clientWidth;
+    const heroHeight = hero.clientHeight;
+    const dotWidth = dot.offsetWidth || 120;
+    const dotHeight = dot.offsetHeight || dotWidth;
+    return {
+      minX: -heroWidth * .12,
+      maxX: heroWidth - dotWidth * .42,
+      minY: -heroHeight * .12,
+      maxY: heroHeight - dotHeight * .42
+    };
+  };
+
+  const setDotPosition = (dot, immediate = false) => {
+    const bounds = getBounds(dot);
+    const x = randomBetween(bounds.minX, bounds.maxX);
+    const y = randomBetween(bounds.minY, bounds.maxY);
+    const scale = randomBetween(.78, 1.2);
+    const rotation = randomBetween(-18, 18);
+    const duration = randomBetween(7.5, 13.5);
+
+    dot.style.animation = 'none';
+    dot.style.left = `${x}px`;
+    dot.style.top = `${y}px`;
+    dot.style.transition = immediate ? 'none' : `left ${duration}s cubic-bezier(.37,0,.63,1), top ${duration}s cubic-bezier(.37,0,.63,1), transform ${duration}s cubic-bezier(.37,0,.63,1)`;
+    dot.style.transform = `translate3d(0,0,0) scale(${scale}) rotate(${rotation}deg)`;
+    dot.classList.add('is-roaming');
+
+    if (!immediate) {
+      const timer = window.setTimeout(() => setDotPosition(dot), duration * 1000 + randomBetween(250, 1100));
+      timers.set(dot, timer);
+    }
+  };
+
+  const stopRoaming = () => {
+    timers.forEach(timer => window.clearTimeout(timer));
+    timers.clear();
+    dots.forEach(dot => {
+      dot.classList.remove('is-roaming');
+      dot.style.animation = 'none';
+      dot.style.transition = 'none';
+      dot.style.left = '';
+      dot.style.top = '';
+      dot.style.transform = '';
+    });
+  };
+
+  const startRoaming = () => {
+    stopRoaming();
+    if (motionQuery.matches) return;
+    dots.forEach((dot, index) => {
+      window.setTimeout(() => setDotPosition(dot, true), index * 180);
+      window.setTimeout(() => setDotPosition(dot), index * 180 + 220);
+    });
+  };
+
+  startRoaming();
+  motionQuery.addEventListener?.('change', startRoaming);
+  window.addEventListener('resize', () => {
+    window.cancelAnimationFrame(resizeFrame);
+    resizeFrame = window.requestAnimationFrame(startRoaming);
+  }, { passive: true });
+})();
