@@ -385,6 +385,7 @@ main>section[id]{border-bottom:1px solid #ededf0!important}
 }
 .signal-word{
   display:inline-block;
+  color:var(--purple)!important;
   opacity:0;
   transform:translateY(.2em);
   filter:blur(3px);
