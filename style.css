@@ -682,6 +682,17 @@ main>section[id]{border-bottom:1px solid #ededf0!important}
 .hero h1 .signal-word{color:var(--ink)!important}
 .hero h1 em .signal-word:nth-of-type(n+3){color:var(--purple)!important}
 
+/* Même hiérarchie sur les grands titres : ouverture noire, conclusion violette. */
+.section-heading h2,
+.section-heading h2 em,
+.about h2,
+.about h2 em,
+.contact h2,
+.contact h2 em{color:var(--ink)!important}
+.section-heading h2 em,
+.about h2 em,
+.contact h2 em{color:var(--purple)!important}
+
 /* The wheel is the public selection; the full archive stays available in data for future use. */
 .projects > .archive-heading,
 .projects > .archive-grid,
