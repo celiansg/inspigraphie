@@ -1,0 +1,10 @@
+# Fichiers temporaires et sorties de tests locales
+tmp/
+.playwright-cli/
+output/playwright/
+
+# Configuration locale des outils
+.vercel/
+.env
+.env.*
+!.env.example
