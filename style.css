@@ -1359,6 +1359,33 @@ main>section[id]{scroll-margin-top:132px}
   .hero-violet-dot{animation:none!important}
 }
 
+/* Le header mobile reste opaque au-dessus des sections pour garder les liens
+   lisibles après un clic d’ancrage. */
+@media(max-width:800px){
+  .nav,
+  .nav.scrolled{
+    background:#fff!important;
+    opacity:1!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+  .nav nav.open{
+    background:#fff!important;
+    opacity:1!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    border-color:#e7d8f4!important;
+  }
+  .nav nav.open a{
+    color:var(--ink)!important;
+    opacity:1!important;
+  }
+  .nav nav.open a.active{
+    color:var(--purple)!important;
+    background:#f3e8ff!important;
+  }
+}
+
 /* Réglage de perception : les halos restent doux, mais leur trajet se lit
    clairement sur un écran de téléphone. */
 .hero-violet-dot{
