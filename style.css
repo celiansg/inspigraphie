@@ -1176,3 +1176,50 @@ main>section[id]{scroll-margin-top:132px}
   main>section[id]{scroll-margin-top:92px}
 }
 
+/* Halo violet animé du hero : une interprétation légère du shader liquide,
+   adaptée à la page statique pour conserver un chargement rapide. */
+.hero{
+  isolation:isolate;
+}
+.hero-violet-shader{
+  position:absolute;
+  z-index:0;
+  inset:-18%;
+  pointer-events:none;
+  opacity:.46;
+  background:
+    radial-gradient(ellipse 34% 30% at 74% 28%,rgba(144,19,254,.22),transparent 70%),
+    radial-gradient(ellipse 42% 34% at 88% 78%,rgba(188,75,255,.18),transparent 72%),
+    radial-gradient(ellipse 38% 32% at 24% 84%,rgba(111,24,220,.12),transparent 72%),
+    conic-gradient(from 210deg at 76% 56%,transparent 0deg,rgba(180,67,255,.08) 70deg,transparent 150deg,rgba(122,28,224,.06) 245deg,transparent 320deg);
+  filter:blur(30px) saturate(118%);
+  transform:translate3d(-1%,1%,0) scale(1.04);
+  animation:heroVioletFlow 18s ease-in-out infinite alternate;
+  will-change:transform,opacity;
+}
+.hero-violet-shader:after{
+  content:'';
+  position:absolute;
+  inset:12% 7% 10% 30%;
+  border:1px solid rgba(144,19,254,.08);
+  border-radius:54% 46% 62% 38% / 42% 56% 44% 58%;
+  transform:rotate(-12deg);
+  opacity:.72;
+}
+@keyframes heroVioletFlow{
+  0%{transform:translate3d(-1%,1%,0) scale(1.04);opacity:.38}
+  50%{transform:translate3d(1.5%,-1%,0) scale(1.08);opacity:.5}
+  100%{transform:translate3d(-.5%,-2%,0) scale(1.06);opacity:.42}
+}
+@media(max-width:800px){
+  .hero-violet-shader{
+    inset:-30%;
+    opacity:.3;
+    filter:blur(32px) saturate(112%);
+  }
+  .hero-violet-shader:after{inset:20% 2% 14% 20%;opacity:.55}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-violet-shader{animation:none;transform:none;opacity:.42}
+}
+
