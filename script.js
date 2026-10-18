@@ -776,30 +776,27 @@ if (methodStepper) {
 
   const randomBetween = (min, max) => min + Math.random() * (max - min);
   const getBounds = dot => {
-    const heroWidth = hero.clientWidth;
     const heroHeight = hero.clientHeight;
-    const dotWidth = dot.offsetWidth || 120;
-    const dotHeight = dot.offsetHeight || dotWidth;
+    const dotHeight = dot.offsetHeight || 180;
     return {
-      minX: -heroWidth * .12,
-      maxX: heroWidth - dotWidth * .42,
-      minY: -heroHeight * .12,
-      maxY: heroHeight - dotHeight * .42
+      minY: -heroHeight * .1,
+      maxY: heroHeight - dotHeight * .55
     };
   };
 
   const setDotPosition = (dot, immediate = false) => {
     const bounds = getBounds(dot);
-    const x = randomBetween(bounds.minX, bounds.maxX);
     const y = randomBetween(bounds.minY, bounds.maxY);
-    const scale = randomBetween(.78, 1.2);
-    const rotation = randomBetween(-18, 18);
+    const isLeftDot = dot.classList.contains('hero-violet-dot--one');
+    const scale = randomBetween(.92, 1.08);
+    const rotation = randomBetween(-7, 7);
     const duration = randomBetween(7.5, 13.5);
 
     dot.style.animation = 'none';
-    dot.style.left = `${x}px`;
+    dot.style.left = isLeftDot ? '-4%' : 'auto';
+    dot.style.right = isLeftDot ? 'auto' : '-4%';
     dot.style.top = `${y}px`;
-    dot.style.transition = immediate ? 'none' : `left ${duration}s cubic-bezier(.37,0,.63,1), top ${duration}s cubic-bezier(.37,0,.63,1), transform ${duration}s cubic-bezier(.37,0,.63,1)`;
+    dot.style.transition = immediate ? 'none' : `top ${duration}s cubic-bezier(.37,0,.63,1), transform ${duration}s cubic-bezier(.37,0,.63,1)`;
     dot.style.transform = `translate3d(0,0,0) scale(${scale}) rotate(${rotation}deg)`;
     dot.classList.add('is-roaming');
 
@@ -817,6 +814,7 @@ if (methodStepper) {
       dot.style.animation = 'none';
       dot.style.transition = 'none';
       dot.style.left = '';
+      dot.style.right = '';
       dot.style.top = '';
       dot.style.transform = '';
     });
