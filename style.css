@@ -676,6 +676,12 @@ main>section[id]{border-bottom:1px solid #ededf0!important}
   .hero-signature,.hero-intro,.specialties{color:inherit}
 }
 
+/* Le message d’accueil reste noir, avec uniquement la chute finale en violet. */
+.hero h1,
+.hero h1 em,
+.hero h1 .signal-word{color:var(--ink)!important}
+.hero h1 em .signal-word:nth-of-type(n+3){color:var(--purple)!important}
+
 /* The wheel is the public selection; the full archive stays available in data for future use. */
 .projects > .archive-heading,
 .projects > .archive-grid,
