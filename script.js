@@ -426,7 +426,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 const pointerQuery = window.matchMedia('(pointer: fine)');
 
-const magneticTargets = document.querySelectorAll('.hero-actions .pill, .hero-actions .secondary-pill, .nav > .pill, .services > .pill, .form-footer .pill');
+const magneticTargets = document.querySelectorAll('.hero-actions .pill, .hero-actions .secondary-pill, .nav > .pill, .services > .pill, .form-footer .pill, .works-wheel-controls button');
 if (pointerQuery.matches && !motionQuery.matches) {
   magneticTargets.forEach(target => {
     target.classList.add('magnetic-target');
@@ -578,6 +578,38 @@ if (methodStepper) {
   const last = count - 1;
   const cards = [];
   const indexButtons = [];
+  const hoverPreview = document.createElement('div');
+  hoverPreview.className = 'works-wheel-hover-preview';
+  hoverPreview.setAttribute('aria-hidden', 'true');
+  hoverPreview.innerHTML = '<img alt=""><span></span>';
+  stage.append(hoverPreview);
+  const previewImage = hoverPreview.querySelector('img');
+  const previewLabel = hoverPreview.querySelector('span');
+  let previewVisible = false;
+
+  const moveHoverPreview = event => {
+    if (!previewVisible || !previewImage?.getAttribute('src')) return;
+    const rect = stage.getBoundingClientRect();
+    const x = clamp(event.clientX - rect.left, 92, rect.width - 92);
+    const y = clamp(event.clientY - rect.top, 112, rect.height - 112);
+    hoverPreview.style.setProperty('--preview-x', `${x}px`);
+    hoverPreview.style.setProperty('--preview-y', `${y}px`);
+  };
+
+  const showHoverPreview = (item, event) => {
+    if (!item?.image || !previewImage) return;
+    previewImage.src = item.image;
+    previewImage.alt = '';
+    if (previewLabel) previewLabel.textContent = item.displayTitle;
+    previewVisible = true;
+    hoverPreview.classList.add('is-visible');
+    if (event) moveHoverPreview(event);
+  };
+
+  const hideHoverPreview = () => {
+    previewVisible = false;
+    hoverPreview.classList.remove('is-visible');
+  };
   let turn = 0;
   let target = 0;
   let active = 0;
@@ -612,6 +644,11 @@ if (methodStepper) {
     button.type = 'button';
     button.textContent = item.displayTitle;
     button.setAttribute('aria-label', `Ouvrir les informations de ${item.displayTitle}`);
+    button.addEventListener('pointerenter', event => showHoverPreview(item, event));
+    button.addEventListener('pointermove', moveHoverPreview);
+    button.addEventListener('pointerleave', hideHoverPreview);
+    button.addEventListener('focus', () => showHoverPreview(item));
+    button.addEventListener('blur', hideHoverPreview);
     button.addEventListener('click', () => { navigate(index + 1); openItem(items[index]); stage.focus(); });
     li.append(button);
     indexList.append(li);
