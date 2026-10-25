@@ -1395,3 +1395,15 @@ main>section[id]{scroll-margin-top:132px}
   .hero-violet-dot--two{right:-30px;top:58%;width:158px;opacity:.26}
 }
 
+/* Garde les descendantes du grand titre visibles sur les petits écrans. */
+@media(max-width:800px){
+  .hero h1,
+  .hero h1 em,
+  .hero h1 .signal-word{
+    line-height:1.02!important;
+    overflow:visible!important;
+  }
+  .hero h1{padding-bottom:.08em!important}
+  .hero h1 .signal-word{padding-bottom:.06em}
+}
+
