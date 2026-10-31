@@ -1433,15 +1433,19 @@ main>section[id]{scroll-margin-top:132px}
 .profile-details article[data-glow]:before{
   content:'';
   position:absolute;
-  z-index:0;
+  z-index:1;
   inset:-1px;
+  width:auto!important;
+  height:auto!important;
   pointer-events:none;
+  -webkit-mask:none!important;
+  mask:none!important;
   background:
-    radial-gradient(circle at 84% 14%,rgba(255,255,255,.94) 0 17px,transparent 18px),
-    radial-gradient(circle at 84% 14%,rgba(255,255,255,.2) 0 35px,transparent 36px),
-    radial-gradient(circle at 84% 14%,rgba(190,91,255,.22) 0 56px,transparent 57px),
-    linear-gradient(135deg,rgba(255,255,255,.16),transparent 34%,transparent 70%,rgba(167,55,255,.12));
-  opacity:.72;
+    radial-gradient(circle at 86% 14%,rgba(255,255,255,.98) 0 22px,rgba(255,255,255,.14) 23px 38px,transparent 39px),
+    radial-gradient(circle at 85% 15%,rgba(255,255,255,.12) 0 53px,rgba(190,91,255,.18) 54px 68px,transparent 69px),
+    radial-gradient(circle at 83% 17%,rgba(255,255,255,.1) 0 78px,rgba(168,55,255,.16) 79px 96px,transparent 97px),
+    linear-gradient(135deg,rgba(255,255,255,.16),transparent 34%,transparent 70%,rgba(167,55,255,.16));
+  opacity:.9;
   transform:translateZ(18px);
   transition:opacity .4s,transform .5s cubic-bezier(.2,.8,.2,1);
 }
@@ -1450,11 +1454,20 @@ main>section[id]{scroll-margin-top:132px}
   position:absolute;
   z-index:1;
   inset:9px;
+  width:auto!important;
+  height:auto!important;
+  left:9px!important;
+  top:9px!important;
+  right:9px!important;
+  bottom:9px!important;
   border:1px solid rgba(255,255,255,.16);
   border-radius:24px;
   background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 28%,transparent 72%,rgba(182,65,255,.12));
   opacity:.72;
   pointer-events:none;
+  -webkit-mask:none!important;
+  mask:none!important;
+  filter:none!important;
   transform:translateZ(24px);
   transition:opacity .4s;
 }
