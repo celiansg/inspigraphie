@@ -1506,3 +1506,76 @@ main>section[id]{scroll-margin-top:132px}
   .profile-details article[data-glow]:hover{transform:none!important}
 }
 
+/* Cartes À propos — version compacte inspirée de la référence utilisateur. */
+.profile-details article[data-glow]{
+  min-height:350px!important;
+  padding:28px 24px 34px!important;
+  border:0!important;
+  border-radius:12px!important;
+  overflow:visible!important;
+  background:#1c1c1c!important;
+  color:#fff!important;
+  box-shadow:0 18px 38px rgba(20,8,28,.18)!important;
+  transform:none!important;
+  transition:background .35s ease,box-shadow .35s ease,transform .35s ease!important;
+}
+.profile-details article[data-glow]:before{display:none!important}
+.profile-details article[data-glow]:after{
+  content:'↗';
+  display:grid;
+  place-items:center;
+  position:absolute;
+  z-index:4;
+  inset:auto 18px 10px auto!important;
+  width:42px!important;
+  height:42px!important;
+  border:3px solid #d500ff!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  color:#1c1c1c!important;
+  font:700 21px/1 Arial,sans-serif!important;
+  opacity:1!important;
+  filter:none!important;
+  transform:none!important;
+  pointer-events:none;
+}
+.profile-details article[data-glow] .profile-card-icon{display:none!important}
+.profile-details article[data-glow] .profile-card-type{
+  display:block;
+  margin:0 0 10px;
+  color:#d500ff!important;
+  font-size:10px;
+  text-align:center;
+}
+.profile-details article[data-glow] h3{
+  margin:0 0 24px!important;
+  color:#fff!important;
+  font-size:24px!important;
+  letter-spacing:-.04em;
+  text-align:center;
+}
+.profile-details article[data-glow] ul{margin-top:0!important}
+.profile-details article[data-glow] li{
+  padding:12px 0!important;
+  border-color:rgba(255,255,255,.16)!important;
+}
+.profile-details article[data-glow] li b{color:#fff!important;font-size:11px}
+.profile-details article[data-glow] li span{color:rgba(255,255,255,.68)!important;font-size:10px;line-height:1.45}
+.profile-details article[data-glow]:hover{
+  background:#d500ff!important;
+  border-color:transparent!important;
+  box-shadow:0 26px 50px rgba(213,0,255,.26)!important;
+  transform:translateY(-7px)!important;
+}
+.profile-details article[data-glow]:hover .profile-card-type{color:#1c1c1c!important}
+.profile-details article[data-glow]:hover li{border-color:rgba(28,28,28,.24)!important}
+.profile-details article[data-glow]:hover:after{border-color:#fff!important;color:#d500ff!important}
+@media(max-width:800px){
+  .profile-details article[data-glow]{min-height:360px!important;padding:26px 22px 34px!important}
+  .profile-details article[data-glow]:hover{transform:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .profile-details article[data-glow]{transition:none!important}
+  .profile-details article[data-glow]:hover{transform:none!important}
+}
+
