@@ -399,7 +399,7 @@ archiveCards.forEach(card => {
   card.addEventListener('mouseleave', () => resumeProjectRail(700));
 });
 
-const glowSkillCards = document.querySelectorAll('.skill-item[data-glow], .service-card[data-glow], .profile-details article[data-glow]');
+const glowSkillCards = document.querySelectorAll('.skill-item[data-glow], .service-card[data-glow]');
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   glowSkillCards.forEach(card => {
     card.addEventListener('pointermove', event => {
@@ -412,25 +412,6 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     card.addEventListener('pointerleave', () => {
       card.style.setProperty('--glow-x', '50%');
       card.style.setProperty('--glow-y', '28%');
-    });
-  });
-}
-
-/* Les cartes À propos reprennent une profondeur 3D légère, comme une carte
-   vitrée inclinée au pointeur. Le contenu reste statique et lisible. */
-const aboutCards = document.querySelectorAll('.profile-details article[data-glow]');
-if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  aboutCards.forEach(card => {
-    card.addEventListener('pointermove', event => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - .5;
-      const y = (event.clientY - rect.top) / rect.height - .5;
-      card.style.setProperty('--tilt-x', `${(x * 7).toFixed(2)}deg`);
-      card.style.setProperty('--tilt-y', `${(-y * 7).toFixed(2)}deg`);
-    });
-    card.addEventListener('pointerleave', () => {
-      card.style.setProperty('--tilt-x', '0deg');
-      card.style.setProperty('--tilt-y', '0deg');
     });
   });
 }
