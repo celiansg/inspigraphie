@@ -399,7 +399,7 @@ archiveCards.forEach(card => {
   card.addEventListener('mouseleave', () => resumeProjectRail(700));
 });
 
-const glowSkillCards = document.querySelectorAll('.skill-item[data-glow], .service-card[data-glow]');
+const glowSkillCards = document.querySelectorAll('.skill-item[data-glow], .service-card[data-glow], .profile-details article[data-glow]');
 if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   glowSkillCards.forEach(card => {
     card.addEventListener('pointermove', event => {

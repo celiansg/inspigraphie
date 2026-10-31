@@ -1415,6 +1415,8 @@ main>section[id]{scroll-margin-top:132px}
    La matière sombre crée un contraste éditorial avec la page claire, tandis
    que les cercles en relief rappellent le motif violet de la marque. */
 .profile-details article[data-glow]{
+  --glow-x:50%;
+  --glow-y:28%;
   position:relative!important;
   min-height:390px!important;
   overflow:hidden!important;
@@ -1513,7 +1515,7 @@ main>section[id]{scroll-margin-top:132px}
   border:0!important;
   border-radius:12px!important;
   overflow:visible!important;
-  background:#1c1c1c!important;
+  background:radial-gradient(190px circle at var(--glow-x) var(--glow-y),rgba(144,19,254,.18),transparent 64%),#1c1c1c!important;
   color:#fff!important;
   box-shadow:0 18px 38px rgba(20,8,28,.18)!important;
   transform:none!important;
@@ -1564,7 +1566,7 @@ main>section[id]{scroll-margin-top:132px}
 .profile-details article[data-glow]:hover{
   background:var(--purple)!important;
   border-color:transparent!important;
-  box-shadow:0 22px 44px rgba(20,8,28,.18)!important;
+  box-shadow:0 26px 50px rgba(144,19,254,.26)!important;
   transform:translateY(-7px)!important;
 }
 .profile-details article[data-glow]:hover .profile-card-type{color:#1c1c1c!important}
@@ -1594,7 +1596,7 @@ main>section[id]{scroll-margin-top:132px}
   border-radius:50%;
   background:var(--purple);
   color:#fff;
-  box-shadow:0 8px 16px rgba(20,8,28,.16);
+  box-shadow:0 9px 18px rgba(144,19,254,.28);
   transition:background .3s ease,color .3s ease,border-color .3s ease,transform .3s ease;
 }
 .profile-card-action svg{
