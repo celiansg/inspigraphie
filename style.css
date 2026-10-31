@@ -1579,3 +1579,38 @@ main>section[id]{scroll-margin-top:132px}
   .profile-details article[data-glow]:hover{transform:none!important}
 }
 
+/* Pictogramme d’action : un symbole métier par carte, dans le violet de la marque. */
+.profile-details article[data-glow]:after{display:none!important}
+.profile-card-action{
+  position:absolute;
+  right:18px;
+  bottom:10px;
+  z-index:4;
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border:3px solid var(--purple);
+  border-radius:50%;
+  background:var(--purple);
+  color:#fff;
+  box-shadow:0 9px 18px rgba(144,19,254,.28);
+  transition:background .3s ease,color .3s ease,border-color .3s ease,transform .3s ease;
+}
+.profile-card-action svg{
+  width:22px;
+  height:22px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.75;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.profile-details article[data-glow]:hover .profile-card-action{
+  border-color:#1c1c1c;
+  background:#1c1c1c;
+  color:#fff;
+  box-shadow:0 9px 18px rgba(20,8,28,.22);
+  transform:scale(1.05);
+}
+
